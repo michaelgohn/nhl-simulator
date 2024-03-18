@@ -3,6 +3,7 @@ import os
 class Team:
     def __init__(self, name, ovr):
         self.name = name
+        self.curr_game = 0
         self.wins = 0
         self.losses = 0
         self.otlosses = 0

@@ -3,6 +3,7 @@ from nhl_structure import team_names
 from random import randint, random
 from game import Game
 
+curr_game = 0
 teams = []
 
 def check_if_same_teams(team1, team2):
@@ -17,6 +18,22 @@ def find_matching_spot(team1, team2):
             return index
     
     return None
+
+def simulate_games():
+    global curr_game
+    while True:
+        try:
+            num_games = int(input('Enter the number of games you want to simulate: '))
+            break
+        except ValueError:
+            print('Error: Not an integer')
+
+    for team in teams:
+        if curr_game != team.curr_game:
+            continue
+        for i in range(num_games):
+            team.schedule[curr_game].determine_winner()
+            curr_game += 1
 
 
 # create teams
@@ -49,5 +66,7 @@ for curr_team in teams:
                 curr_team.schedule[index] = game
                 opp_team.schedule[index] = game
 
-for team in teams:
-    team.print_to_file_schedule()
+# for team in teams:
+#     team.print_to_file_schedule()
+                
+simulate_games()
