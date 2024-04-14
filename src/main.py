@@ -33,9 +33,11 @@ def simulate_games():
     while True:
         try:
             num_games = int(input('Enter the number of games you want to simulate: '))
+            if num_games < 1 or num_games > (82 - curr_game):
+                raise ValueError()
             break
         except ValueError:
-            print('Error: Not an integer')
+            print('Error: Must be integer between 1 and number of remaining games (inclusive)')
 
     for i in range(num_games):
         for team in teams:
@@ -129,7 +131,9 @@ for curr_team in teams:
 
 # for team in teams:
 #     team.print_to_file_schedule()
-                
-simulate_games()
+
+while(curr_game < 82):
+    simulate_games()
+
 option = int(input('Option: '))
 print_standings(option=option)
