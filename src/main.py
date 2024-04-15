@@ -50,46 +50,46 @@ def print_standings(option):
     rank = 1
     match option:
         case 1:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(central)
             for team in central:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
         case 2:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(pacific)
             for team in pacific:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
         case 3:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(atlantic)
             for team in atlantic:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
         case 4:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(metro)
             for team in metro:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
         case 5:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(west)
             for team in west:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
         case 6:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(east)
             for team in east:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
         case 7:
-            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"Overall" : >10}')
+            print(f'\n{"Team" : <20}{"Points" : ^20}{"Wins" : ^20}{"Losses" : ^20}{"OT Losses" : ^20}{"Overall" : >10}')
             sort_by_pts(teams)
             for team in teams:
-                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.ovr : >10}')
+                print(f'{rank}. {team.name : <20}{team.pts : ^20}{team.wins : ^20}{team.losses : ^20}{team.otlosses : ^20}{team.ovr : >10}')
                 rank += 1
 
 
@@ -135,5 +135,8 @@ for curr_team in teams:
 while(curr_game < 82):
     simulate_games()
 
-option = int(input('Option: '))
-print_standings(option=option)
+option = 0
+while(option != 8):
+    option = int(input('Option: '))
+    if(option != 8):
+        print_standings(option=option)
