@@ -15,6 +15,7 @@ class Game:
         self.num_home_goals = 0
         self.num_away_goals = 0
         self.ot = False
+        self.shootout = False
 
     def determine_winner(self):
         self.home_team.curr_game += 1
@@ -85,6 +86,7 @@ class Game:
 
             # shootout
             if home_ot_goal == away_ot_goal:
+                self.shootout = True
                 # makes no sense to score 2 goals in ot so set to 0
                 if home_ot_goal == 1:
                     home_ot_goal = 0
@@ -106,10 +108,10 @@ class Game:
 
         # determine winner
         if self.num_home_goals > self.num_away_goals:
-            self.adjust_records(self.home_team, self.away_team)
+            self.adjust_records(winner=self.home_team, loser=self.away_team)
             self.print_results()
         else:
-            self.adjust_records(self.away_team, self.home_team)
+            self.adjust_records(winner=self.away_team, loser=self.home_team)
             self.print_results()
 
         # rand_num = random()
@@ -125,15 +127,29 @@ class Game:
     def adjust_records(self, winner, loser):
         winner.wins += 1
         winner.pts += 2
-        loser.losses += 1
+        self.home_team.diff += self.num_home_goals
+        self.home_team.diff -= self.num_away_goals
+        self.away_team.diff += self.num_away_goals
+        self.away_team.diff -= self.num_home_goals
+        self.home_team.gf += self.num_home_goals
+        self.away_team.gf += self.num_away_goals
+        self.home_team.ga += self.num_away_goals
+        self.away_team.ga += self.num_home_goals
         if self.ot:
             loser.pts += 1
             loser.otlosses += 1
+            if not self.shootout:
+                winner.row += 1
+        else:
+            winner.rw += 1
+            loser.losses += 1
 
     def print_results(self):
         # pos_goals_winner = [1, 2, 3, 4, 5, 6, 7, 8, 9]
         # winner_weights = [.2, .2, .15, .1, .1, .1, .05, .05, .05]
         # winner_score = choices(pos_goals_winner, winner_weights)[0]
         # loser_score = randint(0, winner_score-1)
-        print(f'\n{self.home_team.name}: {self.num_home_goals} - {self.num_away_goals} :{self.away_team.name}')
+        if self.ot:
+            print('\t\t(OVERTIME)')
+        print(f'{self.home_team.name}: {self.num_home_goals} - {self.num_away_goals} :{self.away_team.name}\n')
 
